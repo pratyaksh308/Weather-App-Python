@@ -1,11 +1,10 @@
 import requests
 import json
 from datetime import datetime
+from config import API_KEY
 
 def get_weather_emoji(weather_data):
-    """
-    Selects an emoji based on the weather condition and time of day.
-    """
+    """Selects an emoji based on the weather condition and time of day."""
     condition = weather_data['weather'][0]['main'].lower()
     
     current_time = datetime.fromtimestamp(weather_data['dt'])
@@ -31,7 +30,7 @@ def get_weather_emoji(weather_data):
         return "🌍"
 
 def main():
-    api_key = "fb09962bbb26455145ef8c861f1ddc05"
+    api_key = API_KEY
     base_url = "https://api.openweathermap.org/data/2.5/weather"
 
     while True:
@@ -40,7 +39,9 @@ def main():
         if city.lower() == 'exit':
             break
 
+        # Define query parameters for the API request.
         params = { 'q': city, 'appid': api_key, 'units': 'metric' }
+
         response = requests.get(base_url, params=params)
 
         if response.status_code == 200:
@@ -57,7 +58,6 @@ def main():
             humidity = weather_data['main']['humidity']
             wind_speed_kmh = round(weather_data['wind']['speed'] * 3.6)
             
-            # --- UPDATED: Manually padded labels for guaranteed perfect alignment ---
             print("\n----------------------------------------")
             print(f"WEATHER IN {city_name.upper()}, {country}")
             print("----------------------------------------")
