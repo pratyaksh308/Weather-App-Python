@@ -21,10 +21,15 @@ A command-line tool, built with Python, that fetches and displays real-time weat
       pip install requests
       ```
 
-3.  **Run the Script:**
-    - Download or clone the `weather.py` file.
-    - Open the file and replace the placeholder `"YOUR_SECRET_API_KEY_GOES_HERE"` with your actual API key.
-    - Run the script from your terminal:
+3.  **Configure the API Key:**
+    - In the same project folder, create a new file named `config.py`.
+    - Inside `config.py`, add the following line, pasting your secret API key between the quotes:
+      ```python
+      API_KEY = "YOUR_SECRET_API_KEY_GOES_HERE"
+      ```
+
+4.  **Run the Script:**
+    - Run the `weather.py` script from your terminal:
       ```
       python weather.py
       ```
